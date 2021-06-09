@@ -4,11 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Models;
+using WebApplication1.Servicios;
 
 namespace WebApplication1.Controllers
 {
     public class LocalesController : Controller
     {
+
+        private ILocalServicio _localServicio;
+        public LocalesController()
+        {
+            VestimentasDBContext dbContext = new VestimentasDBContext();
+            _localServicio = new LocalServicio(dbContext);
+        }
+
         public IActionResult Index()
         {
             using (VestimentasDBContext context = new VestimentasDBContext())
@@ -19,15 +28,13 @@ namespace WebApplication1.Controllers
 
         public IActionResult Alta()
         {
-            using (VestimentasDBContext context = new VestimentasDBContext())
-            {
-                Local l = new Local();
-                l.Direccion = "Av Siempreviva 123";
-                l.Nombre = "Venta de ropa M. Simpson";
-                context.Locals.Add(l);
+            return View();
+        }
 
-                context.SaveChanges();
-            }
+        [HttpPost]
+        public IActionResult Alta(Local local)
+        {
+            _localServicio.Alta(local);
             return Redirect("/locales");
         }
     }
