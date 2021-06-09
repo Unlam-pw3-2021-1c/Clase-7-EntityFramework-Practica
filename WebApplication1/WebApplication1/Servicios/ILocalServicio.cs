@@ -8,6 +8,8 @@ namespace WebApplication1.Servicios
 {
     interface ILocalServicio
     {
+        Local ObtenerPorId(int id);
         void Alta(Local local);
+        void Borrar(Local local);
     }
 }

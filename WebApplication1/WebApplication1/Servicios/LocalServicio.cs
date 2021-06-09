@@ -14,9 +14,20 @@ namespace WebApplication1.Servicios
             _dbContext = dBContext;
         }
 
+        public Local ObtenerPorId(int id)
+        {
+            return _dbContext.Locals.Find(id);
+        }
+
         public void Alta(Local local)
         {
             _dbContext.Locals.Add(local);
+            _dbContext.SaveChanges();
+        }
+
+        public void Borrar(Local local)
+        {
+            _dbContext.Locals.Remove(local);
             _dbContext.SaveChanges();
         }
     }

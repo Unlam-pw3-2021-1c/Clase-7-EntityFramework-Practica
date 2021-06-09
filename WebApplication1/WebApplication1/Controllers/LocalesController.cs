@@ -37,5 +37,13 @@ namespace WebApplication1.Controllers
             _localServicio.Alta(local);
             return Redirect("/locales");
         }
+
+        public IActionResult Borrar(int id)
+        {
+            Local local = _localServicio.ObtenerPorId(id);
+            _localServicio.Borrar(local);
+            return Redirect("/locales");
+        }
+
     }
 }
