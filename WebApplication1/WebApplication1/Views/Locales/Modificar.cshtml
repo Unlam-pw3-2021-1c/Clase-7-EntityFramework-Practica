@@ -1,0 +1,20 @@
+﻿@model WebApplication1.Models.Local
+@{
+}
+
+<form action="/Locales/Modificar" method="post">
+    <input type="hidden" name="IdLocal" value="@Model.IdLocal" />
+    <div>
+        Nombre:
+        <input type="text" name="Nombre" value="@Model.Nombre" />
+    </div>
+
+    <div>
+        Direccion:
+        <input type="text" name="Direccion" value="@Model.Direccion" />
+    </div>
+    <input type="submit" name="Modificar" value="Modificar" />
+</form>
+<form action="/locales" method="post">
+    <input type="submit" name="Cancelar" value="Cancelar" />
+</form>

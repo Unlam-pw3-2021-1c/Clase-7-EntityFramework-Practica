@@ -38,6 +38,19 @@ namespace WebApplication1.Controllers
             return Redirect("/locales");
         }
 
+        public IActionResult Modificar(int id)
+        {
+            Local local = _localServicio.ObtenerPorId(id);
+            return View(local);
+        }
+
+        [HttpPost]
+        public IActionResult Modificar(Local local)
+        {
+            _localServicio.Modificar(local);
+            return Redirect("/locales");
+        }
+
         public IActionResult Borrar(int id)
         {
             Local local = _localServicio.ObtenerPorId(id);

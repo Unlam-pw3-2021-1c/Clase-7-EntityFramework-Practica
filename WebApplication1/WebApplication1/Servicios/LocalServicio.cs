@@ -25,6 +25,14 @@ namespace WebApplication1.Servicios
             _dbContext.SaveChanges();
         }
 
+        public void Modificar(Local local)
+        {
+            Local objActual = ObtenerPorId(local.IdLocal);
+            objActual.Direccion = local.Direccion;
+            objActual.Nombre = local.Nombre;
+            _dbContext.SaveChanges();
+        }
+
         public void Borrar(Local local)
         {
             _dbContext.Locals.Remove(local);
