@@ -18,7 +18,9 @@ namespace WebApplication1.Models
         }
 
         public virtual DbSet<Local> Locals { get; set; }
+        public virtual DbSet<LocalPrendum> LocalPrenda { get; set; }
         public virtual DbSet<Prendum> Prenda { get; set; }
+        public virtual DbSet<TipoPrendum> TipoPrenda { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -44,9 +46,57 @@ namespace WebApplication1.Models
                 entity.Property(e => e.Nombre).HasMaxLength(100);
             });
 
+            modelBuilder.Entity<LocalPrendum>(entity =>
+            {
+                entity.HasKey(e => new { e.IdLocal, e.IdPrenda });
+
+                entity.HasOne(d => d.IdLocalNavigation)
+                    .WithMany(p => p.LocalPrenda)
+                    .HasForeignKey(d => d.IdLocal)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LocalPrenda_Local");
+
+                entity.HasOne(d => d.IdPrendaNavigation)
+                    .WithMany(p => p.LocalPrenda)
+                    .HasForeignKey(d => d.IdPrenda)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LocalPrenda_Prenda");
+            });
+
             modelBuilder.Entity<Prendum>(entity =>
             {
                 entity.HasKey(e => e.IdPrenda);
+
+                entity.Property(e => e.Color).HasMaxLength(100);
+
+                entity.Property(e => e.Marca)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Modelo).HasMaxLength(100);
+
+                entity.Property(e => e.Talle)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                entity.Property(e => e.Tela).HasMaxLength(100);
+
+                entity.Property(e => e.Temporada).HasMaxLength(100);
+
+                entity.HasOne(d => d.IdTipoPrendaNavigation)
+                    .WithMany(p => p.Prenda)
+                    .HasForeignKey(d => d.IdTipoPrenda)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Prenda_TipoPrenda");
+            });
+
+            modelBuilder.Entity<TipoPrendum>(entity =>
+            {
+                entity.HasKey(e => e.IdTipoPrenda);
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(100);
             });
 
             OnModelCreatingPartial(modelBuilder);

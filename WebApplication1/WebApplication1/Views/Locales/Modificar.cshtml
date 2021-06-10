@@ -1,0 +1,37 @@
+﻿@model WebApplication1.Models.Local
+@{
+    List<WebApplication1.Models.Prendum> TodasPrendas = (List<WebApplication1.Models.Prendum>)ViewBag.TodasPrendas;
+
+}
+
+<form action="/Locales/Modificar" method="post">
+    <input type="hidden" name="IdLocal" value="@Model.IdLocal" />
+    <div>
+        Nombre:
+        <input type="text" name="Nombre" value="@Model.Nombre" />
+    </div>
+
+    <div>
+        Direccion:
+        <input type="text" name="Direccion" value="@Model.Direccion" />
+    </div>
+
+    <select multiple name="prendasLocal" class="select">
+        @foreach (var lp in TodasPrendas)
+        {
+            if (Model.LocalPrenda.Any(o => o.IdPrenda == lp.IdPrenda))
+            {
+                <option value="@lp.IdPrenda" selected>@lp</option>
+            }
+            else
+            {
+                <option value="@lp.IdPrenda">@lp</option>
+            }
+        }
+    </select>
+
+    <input type="submit" name="Modificar" value="Modificar" />
+</form>
+<form action="/locales" method="post">
+    <input type="submit" name="Cancelar" value="Cancelar" />
+</form>

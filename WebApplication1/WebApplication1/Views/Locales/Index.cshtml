@@ -1,17 +1,21 @@
 ﻿@model List<WebApplication1.Models.Local>
-@{ 
+@{
 
 }
 <table>
     <tr>
         <th>Nombre</th>
         <th>Direccion</th>
+        <th>Modificar</th>
+        <th>Borrar</th>
     </tr>
     @foreach (var local in Model)
     {
-        <tr>
-            <td>@local.Nombre</td>
-            <td>@local.Direccion</td>
-        </tr>
+<tr>
+    <td>@local.Nombre</td>
+    <td>@local.Direccion</td>
+    <td><a href="/locales/modificar/@local.IdLocal">Modificar</a></td>
+    <td><a href="/locales/borrar/@local.IdLocal">Borrar</a></td>
+</tr>
     }
 </table>
