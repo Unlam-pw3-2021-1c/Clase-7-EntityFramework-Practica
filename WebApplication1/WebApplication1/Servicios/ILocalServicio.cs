@@ -10,7 +10,7 @@ namespace WebApplication1.Servicios
     {
         Local ObtenerPorId(int id);
         void Alta(Local local);
-        void Modificar(Local local);
+        void Modificar(Local local, List<Prendum> prendas);
         void Borrar(Local local);
     }
 }

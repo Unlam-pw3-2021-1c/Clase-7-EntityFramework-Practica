@@ -12,10 +12,12 @@ namespace WebApplication1.Controllers
     {
 
         private ILocalServicio _localServicio;
+        private IPrendaServicio _prendaServicio;
         public LocalesController()
         {
             VestimentasDBContext dbContext = new VestimentasDBContext();
             _localServicio = new LocalServicio(dbContext);
+            _prendaServicio = new PrendaServicio(dbContext);
         }
 
         public IActionResult Index()
@@ -40,14 +42,17 @@ namespace WebApplication1.Controllers
 
         public IActionResult Modificar(int id)
         {
+            ViewBag.TodasPrendas = _prendaServicio.ObtenerTodos();
             Local local = _localServicio.ObtenerPorId(id);
             return View(local);
         }
 
         [HttpPost]
-        public IActionResult Modificar(Local local)
+        public IActionResult Modificar(Local local, int[] prendasLocal)
         {
-            _localServicio.Modificar(local);
+            ViewBag.TodasPrendas = _prendaServicio.ObtenerTodos();
+            List<Prendum> prendas = _prendaServicio.ObtenerPorIds(prendasLocal);
+            _localServicio.Modificar(local, prendas);
             return Redirect("/locales");
         }
 

@@ -1,5 +1,7 @@
 ﻿@model WebApplication1.Models.Local
 @{
+    List<WebApplication1.Models.Prendum> TodasPrendas = (List<WebApplication1.Models.Prendum>)ViewBag.TodasPrendas;
+
 }
 
 <form action="/Locales/Modificar" method="post">
@@ -13,6 +15,21 @@
         Direccion:
         <input type="text" name="Direccion" value="@Model.Direccion" />
     </div>
+
+    <select multiple name="prendasLocal" class="select">
+        @foreach (var lp in TodasPrendas)
+        {
+            if (Model.LocalPrenda.Any(o => o.IdPrenda == lp.IdPrenda))
+            {
+                <option value="@lp.IdPrenda" selected>@lp</option>
+            }
+            else
+            {
+                <option value="@lp.IdPrenda">@lp</option>
+            }
+        }
+    </select>
+
     <input type="submit" name="Modificar" value="Modificar" />
 </form>
 <form action="/locales" method="post">
