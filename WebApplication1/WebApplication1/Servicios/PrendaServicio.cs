@@ -36,6 +36,11 @@ namespace WebApplication1.Servicios
             return _dbContext.Prenda.ToList();
         }
 
+        public List<Prendum> ObtenerTodosPorTipoPrenda(int idTipoPrenda)
+        {
+            return _dbContext.Prenda.Where(o=> o.IdTipoPrenda == idTipoPrenda).ToList();
+        }
+
         public void Alta(Prendum prenda)
         {
             _dbContext.Prenda.Add(prenda);

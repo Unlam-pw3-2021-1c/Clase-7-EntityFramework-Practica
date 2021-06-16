@@ -12,6 +12,7 @@ namespace WebApplication1.Servicios
         void Alta(Prendum o);
         List<Prendum> ObtenerPorIds(int[] ids);
         List<Prendum> ObtenerTodos();
+        List<Prendum> ObtenerTodosPorTipoPrenda(int idTipoPrenda);
         void Borrar(Prendum o);
     }
 }
