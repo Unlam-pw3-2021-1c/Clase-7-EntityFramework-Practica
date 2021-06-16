@@ -50,12 +50,17 @@ namespace WebApplication1.Controllers
 
 
         [HttpPost]
-        public IActionResult Alta(Prendum prenda)
+        public IActionResult Alta(Prendum prenda, string tipoPrendaNueva)
         {
-            if (!ModelState.IsValid)
+            ViewBag.TodasTipoPrendas = _tipoPrendaServicio.ObtenerTodos();
+
+            if (!string.IsNullOrEmpty(tipoPrendaNueva))
             {
-                ViewBag.TodasPrendas = _prendaServicio.ObtenerTodos();
-                return View(prenda);
+                TipoPrendum tipoPrenda = new TipoPrendum();
+                tipoPrenda.Descripcion = tipoPrendaNueva;
+
+                _tipoPrendaServicio.Alta(tipoPrenda);
+                prenda.IdTipoPrenda = tipoPrenda.IdTipoPrenda;
             }
 
             _prendaServicio.Alta(prenda);
