@@ -21,9 +21,24 @@ namespace WebApplication1.Controllers
             _tipoPrendaServicio = new TipoPrendaServicio(dbContext);
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            ViewBag.TodasTipoPrendas = _tipoPrendaServicio.ObtenerTodos();
+            List<Prendum> prendas = _prendaServicio.ObtenerTodos();
+
+            return View(prendas);
+        }
+
+        [HttpPost]
+        public IActionResult Index(int idTipoPrenda)
+        {
+            ViewBag.TodasTipoPrendas = _tipoPrendaServicio.ObtenerTodos();
+            ViewBag.IdTipoPrendaSeleccionada = idTipoPrenda;
+
+            List<Prendum> prendas = _prendaServicio.ObtenerTodosPorTipoPrenda(idTipoPrenda);
+
+            return View(prendas);
         }
 
         [HttpGet]
@@ -44,7 +59,7 @@ namespace WebApplication1.Controllers
             }
 
             _prendaServicio.Alta(prenda);
-            return View(prenda);
+            return Redirect("/Prendas/");
         }
     }
 }
