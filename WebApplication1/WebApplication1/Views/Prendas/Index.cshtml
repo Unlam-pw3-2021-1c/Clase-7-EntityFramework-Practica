@@ -4,6 +4,7 @@
     int? idTipoPrendaSeleccionada = ViewBag.IdTipoPrendaSeleccionada;
 }
 
+<div><a href="/prendas/alta">Crear</a></div>
 <form action="/Prendas/index" method="post">
     Tipo Prenda:
     <select name="IdTipoPrenda">
@@ -28,7 +29,7 @@
 }
 else
 {
-    <table>
+    <table class="table">
         <tr>
             <th>TipoPrenda</th>
             <th>Talle</th>
