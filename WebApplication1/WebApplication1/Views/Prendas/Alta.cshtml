@@ -1,0 +1,26 @@
+﻿@model WebApplication1.Models.Prendum
+@{
+    List<WebApplication1.Models.TipoPrendum> todasTipoPrendas = ViewBag.TodasTipoPrendas;
+}
+
+<form action="/Prendas/Alta" method="post">
+
+    <div>
+        Tipo: 
+        <select name="IdTipoPrenda">
+            <option value="">Elija Prenda</option>
+            @foreach (var tipo in todasTipoPrendas)
+            {
+                <option value="@tipo.IdTipoPrenda">@tipo.Descripcion</option>
+            }
+        </select>
+    </div>
+    <div>Talle: <input type="text" name="Talle" value="" /></div>
+    <div>Color: <input type="text" name="Color" value="" /></div>
+    <div>Modelo: <input type="text" name="Modelo" value="" /></div>
+    <div>Marca: <input type="text" name="Marca" value="" /></div>
+    <div>Tela: <input type="text" name="Tela" value="" /></div>
+    <div>Temporada: <input type="text" name="Temporada" value="" /></div>
+
+    <input type="submit" value="Crear" />
+</form>
