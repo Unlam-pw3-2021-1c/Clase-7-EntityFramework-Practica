@@ -36,8 +36,12 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Alta(Local local)
         {
-            _localServicio.Alta(local);
-            return Redirect("/locales");
+            if (ModelState.IsValid)
+            {
+                _localServicio.Alta(local);
+                return Redirect("/locales");
+            }
+            return View(local);
         }
 
         public IActionResult Modificar(int id)
@@ -50,10 +54,15 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Modificar(Local local, int[] prendasLocal)
         {
+ if (ModelState.IsValid)
+            {
+              
             ViewBag.TodasPrendas = _prendaServicio.ObtenerTodos();
             List<Prendum> prendas = _prendaServicio.ObtenerPorIds(prendasLocal);
             _localServicio.Modificar(local, prendas);
             return Redirect("/locales");
+ }
+            return View(local);
         }
 
         public IActionResult Borrar(int id)
