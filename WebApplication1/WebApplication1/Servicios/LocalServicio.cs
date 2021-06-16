@@ -33,7 +33,6 @@ namespace WebApplication1.Servicios
             objActual.Nombre = local.Nombre;
 
             objActual.LocalPrenda.Clear();
-            _dbContext.SaveChanges();
 
             foreach (var p in prendas)
             {

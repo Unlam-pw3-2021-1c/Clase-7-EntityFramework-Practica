@@ -5,7 +5,8 @@
 <form action="/Locales/Alta" method="post">
     <div>
         Nombre:
-        <input type="text" name="Nombre" value="" />
+        <input type="text" name="Nombre" asp-for="Nombre" value="" />
+        <span asp-validation-for="Nombre"></span>
     </div>
 
     <div>
