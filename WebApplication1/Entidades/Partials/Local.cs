@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Partials;
 
-namespace WebApplication1.Models
+namespace Entidades.Models
 {
     [ModelMetadataType(typeof(LocalMetadata))]
     public partial class Local

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace WebApplication1.Models
+namespace Entidades.Models
 {
     public partial class VestimentasDBContext : DbContext
     {
