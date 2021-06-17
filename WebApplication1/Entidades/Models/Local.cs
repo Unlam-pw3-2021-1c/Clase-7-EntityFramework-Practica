@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace WebApplication1.Models
+namespace Entidades.Models
 {
     public partial class Local
     {

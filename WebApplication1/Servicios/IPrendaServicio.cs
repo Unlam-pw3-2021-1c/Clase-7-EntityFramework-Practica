@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication1.Models;
+using Entidades.Models;
 
-namespace WebApplication1.Servicios
+namespace Servicios
 {
-    interface IPrendaServicio
+    public interface IPrendaServicio
     {
         Prendum ObtenerPorId(int id);
         void Alta(Prendum o);
